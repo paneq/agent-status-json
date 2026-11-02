@@ -1,0 +1,9 @@
+{
+  "name": "agent-status-json",
+  "version": "0.1.0",
+  "description": "Writes the session's state, background shells and loops to ~/.maestro/_herdr_mod/<session-id>/agent-status.json",
+  "author": {
+    "name": "Robert Pankowecki"
+  },
+  "license": "MIT"
+}
