@@ -8,6 +8,7 @@ On every state change it writes `~/.maestro/_herdr_mod/<session-id>/agent-status
 {
   "v": 1,
   "session_id": "0cde5b63-…",
+  "maestro_session_id": "bb0d2fa5-…",
   "cwd": "/workspace",
   "state": "idle",
   "event": "Stop",

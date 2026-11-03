@@ -22,6 +22,7 @@ type Loop = {
 type Snapshot = {
   v: 1
   session_id: string
+  maestro_session_id?: string
   cwd: string
   state: State
   event: string
@@ -30,7 +31,7 @@ type Snapshot = {
   loops: Loop[]
 }
 
-type Change = Partial<Omit<Snapshot, 'v' | 'updated_at'>> & { event: string }
+type Change = Partial<Omit<Snapshot, 'v' | 'updated_at' | 'maestro_session_id'>> & { event: string }
 
 type Pending = { background_tasks?: BackgroundTask[]; session_crons?: Loop[] }
 
@@ -43,6 +44,7 @@ async function write($: EngineInterface, change: Change): Promise<void> {
   snapshot = {
     v: 1,
     session_id: sessionId,
+    maestro_session_id: (await $.env.get('MAESTRO_SESSION_ID')) || undefined,
     cwd: change.cwd ?? snapshot?.cwd ?? (await $.session.cwd()),
     state: change.state ?? snapshot?.state ?? 'idle',
     event: change.event,
